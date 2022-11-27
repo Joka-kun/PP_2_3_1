@@ -86,6 +86,7 @@ public class WebConfig implements WebMvcConfigurer {
         entityManager.setDataSource(getDataSource());
         entityManager.setPackagesToScan("web");
         Properties properties = new Properties();
+        properties.put(org.hibernate.cfg.Environment.DIALECT, environment.getProperty("hibernate.dialect"));
         properties.put(org.hibernate.cfg.Environment.SHOW_SQL, environment.getProperty("hibernate.show_sql"));
         properties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, environment.getProperty("hibernate.hbm2ddl.auto"));
         entityManager.setJpaProperties(properties);
