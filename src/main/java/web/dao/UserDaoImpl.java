@@ -17,14 +17,17 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         return manager.createQuery("select us from User us").getResultList();
     }
+    @Transactional
     @Override
     public User getUserById(int id) {
         return manager.find(User.class,id);
     }
+    @Transactional
     @Override
     public void saveUser(User user) {
         manager.persist(user);
     }
+    @Transactional
     @Override
     public void updateUser(int id, User updatedUser) {
         User user = manager.find(User.class,id);
@@ -33,6 +36,7 @@ public class UserDaoImpl implements UserDao {
         user.setAge(updatedUser.getAge());
         user.setEmail(updatedUser.getEmail());
     }
+    @Transactional
     @Override
     public void deleteUser(int id) {
         manager.remove(getUserById(id));
